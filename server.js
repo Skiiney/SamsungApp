@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://admin:teste123<dbpassword>@ds121282.mlab.com:21282/heroku_xpjr01hn');
+mongoose.connect('mongodb://admin:teste123@ds121282.mlab.com:21282/heroku_xpjr01hn');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
