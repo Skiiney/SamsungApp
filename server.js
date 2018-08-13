@@ -13,17 +13,15 @@ console.log('Message RESTful API server started on: ' + port);
 
 */
 
-var express = require('express'),
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
 
-app = express(),
+const Message = require('./api/models/msgModel');
+const bodyParser = require('body-parser');
+const routes = require('./api/routes/msgRoutes');
 
-port = process.env.PORT || 3000,
-
-mongoose = require('mongoose'),
-
-Message = require('./api/models/msgModel'),
-
-bodyParser = require('body-parser');
+const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
@@ -32,8 +30,6 @@ mongoose.connect('mongodb://localhost/msgdb');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
-
-var routes = require('./api/routes/msgRoutes');
 
 routes(app);
 
