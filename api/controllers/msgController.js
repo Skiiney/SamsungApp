@@ -1,12 +1,11 @@
 'use strict';
-
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
 
 Message = mongoose.model('Messages');
 
-exports.list_all_messages = function(req, res) {
+exports.list_all_messages = (req, res) => {
 
-   Message.find({}, function(err, msg) {
+   Message.find({}, (err, msg) => {
 
       if (err)
 
@@ -18,11 +17,11 @@ exports.list_all_messages = function(req, res) {
 
 };
 
-exports.create_a_message = function(req, res) {
+exports.create_a_message = (req, res) => {
 
    var new_msg = new Message(req.body);
 
-   new_msg.save(function(err, msg) {
+   new_msg.save((err, msg) => {
 
    if (err)
 
@@ -34,23 +33,9 @@ exports.create_a_message = function(req, res) {
 
 };
 
-exports.read_a_message = function(req, res) {
+exports.read_a_message = (req, res) => {
 
-   Message.findById(req.params.msgId, function(err, msg) {
-
-   if (err)
-
-      res.send(err);
-
-   res.json(msg);
-
-   });
-
-};
-
-exports.update_a_message = function(req, res) {
-
-   Message.findOneAndUpdate({_id: req.params.msgId}, req.body, {new: true}, function(err, msg) {
+   Message.findById(req.params.msgId, (err, msg) => {
 
    if (err)
 
@@ -62,13 +47,27 @@ exports.update_a_message = function(req, res) {
 
 };
 
-exports.delete_a_message = function(req, res) {
+exports.update_a_message = (req, res) => {
+
+   Message.findOneAndUpdate({_id: req.params.msgId}, req.body, {new: true}, (err, msg) => {
+
+   if (err)
+
+      res.send(err);
+
+   res.json(msg);
+
+   });
+
+};
+
+exports.delete_a_message = (req, res) => {
 
    Message.remove({
 
       _id: req.params.msgId
 
-   }, function(err, msg) {
+   }, (err, msg) => {
 
    if (err)
 
