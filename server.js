@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 
 const User = require('./api/models/userModel');
