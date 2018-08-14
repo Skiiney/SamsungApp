@@ -4,14 +4,11 @@ const mongoose = require('mongoose'),
 User = mongoose.model('user');
 
 exports.list_all_users = (req, res) => {
-
    User.find({}, (err, msg) => {
-
-      if (err)
-
-      res.send(err);
-
-      res.json(msg);
+      
+    if (err) res.send(err);
+      
+    res.json(msg);
 
    });
 
@@ -19,17 +16,9 @@ exports.list_all_users = (req, res) => {
 
 exports.create_user = (req, res) => {
 
-   var new_user = new User(req.body);
+   const new_user = new User(req.body);
 
-   new_user.save((err, msg) => {
-
-   if (err)
-
-      res.send(err);
-
-   res.json(msg);
-
-   });
+   new_user.save((err, msg) => (err) ? res.send(err) : res.json(msg));
 
 };
 
@@ -37,9 +26,7 @@ exports.read_user = (req, res) => {
 
    User.findById(req.params.userId, (err, msg) => {
 
-   if (err)
-
-      res.send(err);
+   if (err) res.send(err);
 
    res.json(msg);
 
@@ -51,9 +38,7 @@ exports.update_user = (req, res) => {
 
    Message.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, (err, msg) => {
 
-   if (err)
-
-      res.send(err);
+   if (err) res.send(err);
 
    res.json(msg);
 
@@ -69,9 +54,7 @@ exports.delete_user = (req, res) => {
 
    }, (err, msg) => {
 
-   if (err)
-
-      res.send(err);
+   if (err) res.send(err);
 
    res.json({ message: 'User successfully deleted' });
 
