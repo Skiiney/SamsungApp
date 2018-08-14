@@ -3,23 +3,22 @@ const mongoose = require("mongoose");
 const User = require("../models/userModel");
 
 exports.list_all_users = (req, res) => {
-  User.find({}, (err, msg) => {
-    if (err) res.send('erro porra');
-
-    res.json(msg);
-  });
+  User.find()
+    .then(users => res.send(users))
+    .catch(err => res.status(500).send({ message: err.message }));
 };
 
 exports.create_user = (req, res) => {
-  
-    let new_user = new User({
-        name: req.body.name,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        password: req.body.password
-    });
+  let new_user = new User({
+    name: req.body.name,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    password: req.body.password
+  });
 
-  new_user.save((err, msg) => (err ? res.send('deu erorrrororo') : res.json(msg)));
+  new_user.save(
+    (err, msg) => (err ? res.send("deu erorrrororo") : res.json(msg))
+  );
 };
 
 exports.read_user = (req, res) => {
