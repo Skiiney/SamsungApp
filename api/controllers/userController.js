@@ -18,6 +18,8 @@ exports.create_user = (req, res) => {
 
    const new_user = new User(req.body);
 
+   console.log(req.body)
+
    new_user.save((err, msg) => (err) ? res.send(err) : res.json(msg));
 
 };
