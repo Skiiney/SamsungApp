@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
-const User = mongoose.model("user");
+const User = require("../models/userModel");
 
 exports.list_all_users = (req, res) => {
   User.find({}, (err, msg) => {
