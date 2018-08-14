@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const Message = require('./api/models/msgModel');
+const User = require('./api/models/userModel');
 const bodyParser = require('body-parser');
-const routes = require('./api/routes/msgRoutes');
+const routes = require('./api/routes/userRoutes');
 
 const port = process.env.PORT || 3000;
 
