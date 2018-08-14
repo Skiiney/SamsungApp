@@ -1,67 +1,54 @@
-'use strict';
-const mongoose = require('mongoose'),
-
-User = mongoose.model('user');
+"use strict";
+const mongoose = require("mongoose"),
+  User = mongoose.model("user");
 
 exports.list_all_users = (req, res) => {
-   User.find({}, (err, msg) => {
-      
+  User.find({}, (err, msg) => {
     if (err) res.send(err);
-      
+
     res.json(msg);
-
-   });
-
+  });
 };
 
 exports.create_user = (req, res) => {
+  let new_user = new User(req.body);
 
-    console.log(User)
+    console.log(new_user)
+  console.log(req.body);
 
-   const new_user = new User(req.body);
-
-   console.log(req.body)
-
-   new_user.save((err, msg) => (err) ? res.send(err) : res.json(msg));
-
+  new_user.save((err, msg) => (err ? res.send(err) : res.json(msg)));
 };
 
 exports.read_user = (req, res) => {
+  User.findById(req.params.userId, (err, msg) => {
+    if (err) res.send(err);
 
-   User.findById(req.params.userId, (err, msg) => {
-
-   if (err) res.send(err);
-
-   res.json(msg);
-
-   });
-
+    res.json(msg);
+  });
 };
 
 exports.update_user = (req, res) => {
+  Message.findOneAndUpdate(
+    { _id: req.params.userId },
+    req.body,
+    { new: true },
+    (err, msg) => {
+      if (err) res.send(err);
 
-   Message.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true}, (err, msg) => {
-
-   if (err) res.send(err);
-
-   res.json(msg);
-
-   });
-
+      res.json(msg);
+    }
+  );
 };
 
 exports.delete_user = (req, res) => {
-
-   User.remove({
-
+  User.remove(
+    {
       _id: req.params.userId
+    },
+    (err, msg) => {
+      if (err) res.send(err);
 
-   }, (err, msg) => {
-
-   if (err) res.send(err);
-
-   res.json({ message: 'User successfully deleted' });
-
-   });
-
+      res.json({ message: "User successfully deleted" });
+    }
+  );
 };
