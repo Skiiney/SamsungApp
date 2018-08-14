@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 
 exports.list_all_users = (req, res) => {
   User.find({}, (err, msg) => {
-    if (err) res.send(err);
+    if (err) res.send('erro porra');
 
     res.json(msg);
   });
@@ -19,7 +19,7 @@ exports.create_user = (req, res) => {
         password: req.body.password
     });
 
-  new_user.save((err, msg) => (err ? res.send(err) : res.json(msg)));
+  new_user.save((err, msg) => (err ? res.send('deu erorrrororo') : res.json(msg)));
 };
 
 exports.read_user = (req, res) => {
