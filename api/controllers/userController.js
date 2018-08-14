@@ -1,6 +1,6 @@
 "use strict";
-const mongoose = require("mongoose"),
-  User = mongoose.model("user");
+const mongoose = require("mongoose");
+const User = mongoose.model("user");
 
 exports.list_all_users = (req, res) => {
   User.find({}, (err, msg) => {
@@ -11,10 +11,13 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-  let new_user = new User(req.body);
-
-    console.log(new_user)
-  console.log(req.body);
+  
+    let new_user = new User({
+        name: req.body.name,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        password: req.body.password
+    });
 
   new_user.save((err, msg) => (err ? res.send(err) : res.json(msg)));
 };
