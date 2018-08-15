@@ -8,8 +8,10 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-console.log(req.body)
-    console.log(bcrypt.hashSync(req.body.password, bcrypt.genSalt(10)))
+let pass = req.body.password;
+
+    console.log(req.body, req.body.password)
+    console.log(bcrypt.hashSync(pass, bcrypt.genSalt(10)))
   const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
