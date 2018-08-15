@@ -1,5 +1,4 @@
 "use strict";
-const mongoose = require("mongoose");
 const User = require("../models/userModel");
 
 exports.list_all_users = (req, res) => {
@@ -9,9 +8,7 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-  
-    console.log(req.body)
-
+  console.log(req.body);
 
   const user = new User({
     name: req.body.name,

@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const User = require("./api/models/userModel");
 const bodyParser = require("body-parser");
-const routes = require("./api/routes/userRoutes");
+
 
 const port = process.env.PORT || 3000;
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
 });
 
-routes(app);
+require("./api/routes/userRoutes")(app);
 
 app.listen(port);
 
