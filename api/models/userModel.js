@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
 
 const userSchema = mongoose.Schema(
   {
@@ -11,14 +11,15 @@ const userSchema = mongoose.Schema(
       unique: true
     },
     password: String,
-    hash: String
+    // hash: String
   },
   { timestamps: true }
 );
 
+/*
 userSchema.methods.generateHash = password =>
   bcrypt.hashSync(password, bcrypt.genSalt(10));
 userSchema.methods.validPassword = password =>
   bcrypt.compareSync(password, this.password);
-
+*/
 module.exports = mongoose.model("user", userSchema);
