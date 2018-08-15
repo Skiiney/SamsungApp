@@ -1,4 +1,6 @@
 # SamsungApp
 
-* bcrypt - faltando
-* tratar login 
+* Encriptar senha 
+* Tratar login 
+* Tratar cadastro
+* Refazer rotas (cadastro, login, users)
