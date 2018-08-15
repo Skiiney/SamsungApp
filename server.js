@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-const bcrypt = require('bcrypt');
 const User = require("./api/models/userModel");
 
 
