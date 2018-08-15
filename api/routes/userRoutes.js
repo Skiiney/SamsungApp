@@ -7,10 +7,10 @@ const users = require('../controllers/userController');
 // users Routes
 app.route('/users')
    .get(users.list_all_users)
-   .post(users.create_user);
-
-app.route('/users/:userId')
+     
+app.route('/register')
+   .post(users.create_users)
+   
+app.route('/read')
    .get(users.read_user)
-   .put(users.update_user)
-   .delete(users.delete_user);
 };
