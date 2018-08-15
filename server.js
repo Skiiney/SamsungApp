@@ -12,6 +12,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+});
+
+routes(app);
+
+app.listen(port);
+
+
+
 mongoose.Promise = global.Promise;
 
 mongoose
@@ -22,8 +32,5 @@ mongoose
   .then(() => console.log("Conectado com sucesso."))
   .catch(err => console.log("Nao foi possivel conectar ao banco de dados"));
 
-routes(app);
 
-app.listen(port);
 
-console.log("Message RESTful API server started on: " + port);

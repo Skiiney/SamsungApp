@@ -5,10 +5,6 @@ module.exports = (app) => {
 const users = require('../controllers/userController');
 
 // users Routes
-app.get('/', function(req, res) {
-  res.json({hello : 'Connectado'})
-;})
-
 app.route('/users')
    .get(users.list_all_users)
    .post(users.create_user);
