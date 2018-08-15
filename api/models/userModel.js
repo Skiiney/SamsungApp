@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema(
 );
 
 userSchema.methods.generateHash = password =>
-  bcrypt.hashSync(password, bcrypt.genSalt(), null);
+  bcrypt.hashSync(password, bcrypt.genSalt(10));
 userSchema.methods.validPassword = password =>
   bcrypt.compareSync(password, this.password);
 
