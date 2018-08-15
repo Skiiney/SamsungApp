@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
-const User = require("./api/models/userModel");
 const bodyParser = require("body-parser");
+
+const bcrypt = require('bcrypt');
+const User = require("./api/models/userModel");
+
 
 
 const port = process.env.PORT || 3000;
