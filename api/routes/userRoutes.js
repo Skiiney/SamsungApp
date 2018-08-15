@@ -5,10 +5,9 @@ module.exports = (app) => {
 const users = require('../controllers/userController');
 
 // users Routes
-app.post('/users', users.create_user);
-app.get('/users', users.list_all_users);
-  //  .get(users.list_all_users)
-  //  .post(users.create_user);
+app.route('/users')
+   .get(users.list_all_users)
+   .post(users.create_user);
 
 app.route('/users/:userId')
    .get(users.read_user)

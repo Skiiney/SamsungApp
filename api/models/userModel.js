@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     unique: true
   },
   password: String,
-  time: { type: Date, default: Date.now }
+  timestamps: true
 });
 
 module.exports = mongoose.model("user", userSchema);
