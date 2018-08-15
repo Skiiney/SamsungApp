@@ -11,18 +11,15 @@ exports.list_all_users = (req, res) => {
 exports.create_user = (req, res) => {
 let pass = req.body.password;
 
-  console.log(req.body, req.body.password)
+  console.log(req.body)
     // console.log(bcrypt.hashSync(pass, bcrypt.genSalt(10)))
   const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
     email: req.body.email,
     password: req.body.password
-    
   });
-  // user.password = req.body.password;
 
-  
   user
     .save()
     .then(data => res.send(data))
@@ -30,11 +27,20 @@ let pass = req.body.password;
 };
 
 exports.read_user = (req, res) => {
-  User.findById(req.params.userId, (err, msg) => {
-    if (err) res.send(err);
 
-    res.json(msg);
-  });
+  user
+    .findOne({username = user.username, password = user.password}, function(err, user){
+    if(err) {
+        console.log(err);
+        return res.status(500).send();
+    }
+
+    if(!user) {
+        return res.status(404).send()
+    }
+
+    return res.status(200).send();
+  })
 };
 
 exports.update_user = (req, res) => {
