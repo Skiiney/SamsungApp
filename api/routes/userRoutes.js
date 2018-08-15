@@ -9,7 +9,7 @@ app.route('/users')
    .get(users.list_all_users)
      
 app.route('/register')
-   .post(users.create_users)
+   .post(users.create_user)
    
 app.route('/read')
    .get(users.read_user)
