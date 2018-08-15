@@ -9,9 +9,7 @@ const userSchema = mongoose.Schema({
     unique: true
   },
   password: String,
-  timestamps: { 
-    createdAt: 'created_at', 
-    updatedAt: 'updated_at' 
-  }});
+  timestamps: true
+});
 
 module.exports = mongoose.model("user", userSchema);
