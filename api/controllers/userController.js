@@ -29,7 +29,7 @@ let pass = req.body.password;
 exports.read_user = (req, res) => {
 
   user
-    .findOne({username = user.name, password = user.password}, function(err, user){
+    .findOne({name = user.name, password = user.password}, function(err, user){
     if(err) {
         console.log(err);
         return res.status(500).send();
