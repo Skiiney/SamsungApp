@@ -15,7 +15,9 @@ exports.create_user = (req, res) => {
     email: req.body.email,
     
   });
-  user.password = user.generateHash(req.body.password)
+  user.password = req.body.password;
+
+  console.log(user.generateHash(req.body.password))
   user
     .save()
     .then(data => res.send(data))
