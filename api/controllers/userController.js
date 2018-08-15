@@ -9,16 +9,23 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-  let new_user = new User({
+  if (!req.body.content) {
+    return res.status(400).send({
+      message: "Note content can not be empty"
+    });
+  }
+
+  const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
     email: req.body.email,
     password: req.body.password
   });
 
-  new_user.save(
-    (err, msg) => (err ? res.send("deu erorrrororo") : res.json(msg))
-  );
+  user
+    .save()
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send({ message: err.message }));
 };
 
 exports.read_user = (req, res) => {
