@@ -1,6 +1,6 @@
 "use strict";
 const User = require("../models/userModel");
-
+const bcrypt = require('bcryptjs')
 exports.list_all_users = (req, res) => {
   User.find()
     .then(users => res.send(users))
@@ -8,7 +8,8 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-
+console.log(req.body)
+    console.log(bcrypt.hashSync(req.body.password, bcrypt.genSalt(10)))
   const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
@@ -17,7 +18,7 @@ exports.create_user = (req, res) => {
   });
   user.password = req.body.password;
 
-  console.log(user.generateHash(req.body.password))
+  
   user
     .save()
     .then(data => res.send(data))
