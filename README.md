@@ -1,2 +1,4 @@
 # SamsungApp
-App
+
+* bcrypt - faltando
+* tratar login 
