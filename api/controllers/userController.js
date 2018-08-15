@@ -9,8 +9,9 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-    console.log(req)
   
+    console.log(req.body)
+
     if (!req.body.content) {
     return res.status(400).send({
       message: "Note content can not be empty"
