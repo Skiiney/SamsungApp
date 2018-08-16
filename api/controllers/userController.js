@@ -44,8 +44,12 @@ exports.read_user = (req, res) => {
         .compare(req.body.password, user.password)
         .then(data =>
           res.status(200).send({
-            user: user,
-            authToken: bcrypt.hashSync(user.password, HASH_SALT_FACTOR)
+            user: {
+              name: user.name,
+              lastname: user.lastname,
+              email: user.email,
+            },
+            authToken: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
           })
         )
         .catch(err =>
