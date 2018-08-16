@@ -42,22 +42,18 @@ exports.read_user = (req, res) => {
 
       bcrypt
         .compare(req.body.password, user.password)
-        .then(data => {
-
-          if (data) {
-            res.status(200).send({
-              user: {
-                name: user.name,
-                lastname: user.lastname,
-                email: user.email,
-              },
-              authToken: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
-            })
-          } else {
-            res.status(200).send({ error: "Usuário não autenticado." })
-          } 
-        }
-      )
+        .then(isCorrect => {
+          isCorrect
+            ? res.status(200).send({
+                user: {
+                  name: user.name,
+                  lastname: user.lastname,
+                  email: user.email
+                },
+                authToken: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
+              })
+            : res.status(200).send({ error: "Usuário não autenticado." });
+        })
         .catch(err =>
           res.status(404).send({ error: "Usuário não autenticado." })
         );
