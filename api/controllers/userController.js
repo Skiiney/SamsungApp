@@ -27,7 +27,7 @@ exports.create_user = (req, res) => {
 
 exports.read_user = (req, res) => {
 
-  User.findOne({name: user.name, password: user.password}, function(err, user)
+  User.findOne({name: req.body.name, password: req.body.password}, function(err, user)
     {
     if(err) {
         console.log(err);
