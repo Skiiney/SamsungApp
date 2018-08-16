@@ -27,7 +27,6 @@ exports.read_user = (req, res) => {
   User.findOne(
     {
       email: req.body.email,
-      password: req.body.password
     },
     (err, user) => {
       console.log(user, err);
