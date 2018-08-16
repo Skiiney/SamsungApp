@@ -30,6 +30,7 @@ exports.read_user = (req, res) => {
       password: req.body.password
     },
     (err, user) => {
+      console.log(user);
       if (err) {
         return res.status(500).send({ erro: "Erro ao processar." });
       }
@@ -37,7 +38,7 @@ exports.read_user = (req, res) => {
       if (!user) {
         return res.status(404).send({ error: "Usuário não autenticado." });
       }
-
+      
       bcrypt
         .compare(req.body.password, user.password)
         .then(data =>
