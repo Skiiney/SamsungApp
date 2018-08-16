@@ -27,18 +27,25 @@ exports.read_user = (req, res) => {
   User.findOne(
     {
       email: req.body.email,
+      password: req.body.password
     },
     (err, user) => {
       if (err) {
-        console.log(err);
-        return res.status(500).send();
+        return res.status(500).send({ erro: "Erro ao processar." });
       }
 
       if (!user) {
-        return res.status(404).send();
+        return res.status(404).send({ error: "Usuário não autenticado." });
       }
-      console.log(user);
-      return res.status(200).send();
+
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then(data =>
+          res.status(200).send({ message: "Usuário autenticado com sucesso" })
+        )
+        .catch(err =>
+          res.status(404).send({ error: "Usuário não autenticado." })
+        );
     }
   );
 };
