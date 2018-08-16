@@ -9,7 +9,6 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-let pass = req.body.password;
 
   console.log(req.body)
     // console.log(bcrypt.hashSync(pass, bcrypt.genSalt(10)))
@@ -28,8 +27,8 @@ let pass = req.body.password;
 
 exports.read_user = (req, res) => {
 
-  user
-    .findOne({name = user.name, password = user.password}, function(err, user){
+  User.findOne({name: user.name, password: user.password}, function(err, user)
+    {
     if(err) {
         console.log(err);
         return res.status(500).send();
@@ -44,7 +43,7 @@ exports.read_user = (req, res) => {
 };
 
 exports.update_user = (req, res) => {
-  Message.findOneAndUpdate(
+  User.findOneAndUpdate(
     { _id: req.params.userId },
     req.body,
     { new: true },
