@@ -26,7 +26,7 @@ exports.create_user = (req, res) => {
 exports.read_user = (req, res) => {
   User.findOne(
     {
-      email: req.body.name,
+      email: req.body.email,
     },
     (err, user) => {
       if (err) {
