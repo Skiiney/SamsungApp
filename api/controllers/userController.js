@@ -1,6 +1,6 @@
 "use strict";
 const User = require("../models/userModel");
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
 
 exports.list_all_users = (req, res) => {
   User.find()
@@ -9,7 +9,7 @@ exports.list_all_users = (req, res) => {
 };
 
 exports.create_user = (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
@@ -24,20 +24,23 @@ exports.create_user = (req, res) => {
 };
 
 exports.read_user = (req, res) => {
-
-  User.findOne({name: req.body.name, password: req.body.password}, function(err, user)
+  User.findOne(
     {
-    if(err) {
+      email: req.body.name,
+    },
+    (err, user) => {
+      if (err) {
         console.log(err);
         return res.status(500).send();
-    }
+      }
 
-    if(!user) {
-        return res.status(404).send()
+      if (!user) {
+        return res.status(404).send();
+      }
+      console.log(user);
+      return res.status(200).send();
     }
-
-    return res.status(200).send();
-  })
+  );
 };
 
 exports.update_user = (req, res) => {
