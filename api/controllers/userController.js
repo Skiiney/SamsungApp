@@ -2,6 +2,8 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
+const HASH_SALT_FACTOR = 12;
+
 exports.list_all_users = (req, res) => {
   User.find()
     .then(users => res.send(users))
@@ -14,7 +16,7 @@ exports.create_user = (req, res) => {
     name: req.body.name,
     lastname: req.body.lastname,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 12)
+    password: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
   });
 
   user
@@ -26,7 +28,7 @@ exports.create_user = (req, res) => {
 exports.read_user = (req, res) => {
   User.findOne(
     {
-      email: req.body.email,
+      email: req.body.email
     },
     (err, user) => {
       console.log(user, err);
@@ -41,7 +43,10 @@ exports.read_user = (req, res) => {
       bcrypt
         .compare(req.body.password, user.password)
         .then(data =>
-          res.status(200).send({ message: "Usuário autenticado com sucesso" })
+          res.status(200).send({
+            user: user,
+            authToken: bcrypt.hashSync(user.password, HASH_SALT_FACTOR)
+          })
         )
         .catch(err =>
           res.status(404).send({ error: "Usuário não autenticado." })
