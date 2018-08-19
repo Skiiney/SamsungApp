@@ -31,7 +31,7 @@ exports.read_user = (req, res) => {
       email: req.body.email
     },
     (err, user) => {
-      console.log(user, req);
+      console.log(user, err);
       if (err) {
         return res.status(500).send({ erro: "Erro ao processar." });
       }
