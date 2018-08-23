@@ -31,7 +31,7 @@ exports.read_user = (req, res) => {
       email: req.body.email
     },
     (err, user) => {
-      console.log(req.body.email, req.body.password + " login");
+      console.log("Tentativa de login: " + req.body.email, user.password);
       if (err) {
         return res.status(500).send({ erro: "Erro ao processar." });
         console.log(err);
