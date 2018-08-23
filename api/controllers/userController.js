@@ -31,14 +31,15 @@ exports.read_user = (req, res) => {
       email: req.body.email
     },
     (err, user) => {
+      console.log(req.body.email, req.body.password + " login");
       if (err) {
         return res.status(500).send({ erro: "Erro ao processar." });
-        console.log(res);
+        console.log(err);
       }
 
       if (!user) {
         return res.status(404).send({ error: "Usuário não encontrado." });
-        console.log(res);
+        console.log(err);
       }
 
       bcrypt
@@ -54,7 +55,7 @@ exports.read_user = (req, res) => {
                 authToken: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
               })
             : res.status(200).send({ error: "Usuário não autenticado." });
-        console.log(res);
+        console.log(err);
         })
         .catch(err =>
           res.status(404).send({ error: "Usuário não autenticado." })
