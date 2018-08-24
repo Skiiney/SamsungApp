@@ -39,11 +39,10 @@ const materiasSchema = mongoose.Schema(
 	
 	
 	{
-	semana: "Dias da semana",
 	dias:
-	[
-	{name: "Segunda",
-    type: Boolean},
+	[{
+	name: "Segunda",
+    	type: Boolean},
 	
    {name: "Terça",
     type: Boolean,}
