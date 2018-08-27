@@ -89,6 +89,30 @@ exports.save_materias = (req, res) => {
   );
 };
 
+exports.save_notes = (req, res) => {
+  User.findOne({ email: req.body.email}, (err, user) => {
+    if (err) {
+      return res.status(500).send({ erro: "Erro ao processar." });
+      console.log(err);
+    }
+
+    if (!user) {
+      return res.status(404).send({ error: "Usuário não encontrado." });
+      console.log(err);
+    }
+      user.materias[0].notes.push({
+          titulo: req.body.titulo,
+          mensagem: req.body.mensagem
+        });
+
+      user
+        .save()
+        .then(data => res.send(data))
+        .catch(err => res.status(500).send({ message: err.message }));
+    }
+  );
+};
+
 exports.delete_user = (req, res) => {
   User.remove(
     {

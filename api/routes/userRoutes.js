@@ -16,4 +16,7 @@ app.route('/login')
 
 app.route('/materias')
    .post(users.save_materias)
+
+app.route('/notes')
+   .post(users.save_notes)
 };
