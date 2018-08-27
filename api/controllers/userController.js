@@ -66,7 +66,15 @@ exports.read_user = (req, res) => {
 
 exports.save_materias = (req, res) => {
   User.findOne({ email: req.body.email}, (err, msg) => {
-    //teste
+    if (err) {
+      return res.status(500).send({ erro: "Erro ao processar." });
+      console.log(err);
+    }
+
+    if (!user) {
+      return res.status(404).send({ error: "Usuário não encontrado." });
+      console.log(err);
+    }
       var subdoc = user.materias[0];
       subdoc.push(
         {
