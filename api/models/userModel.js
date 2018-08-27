@@ -11,8 +11,25 @@ const userSchema = mongoose.Schema(
       required: true
     },
     password: {type: String, required: true},
+    materias: [materiaSchema]
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("user", userSchema);
+
+const materiaSchema = moongose.Schema(
+  {
+    nome_materia: String,
+    nome_prof: String,
+    dia: String,
+    notes: [noteSchema]
+  }
+);
+
+const noteSchema = moongose.Schema(
+  {
+    titulo: String,
+    mensagem: String
+  }
+);

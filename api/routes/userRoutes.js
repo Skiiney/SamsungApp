@@ -13,4 +13,7 @@ app.route('/register')
 
 app.route('/login')
    .post(users.read_user)
+
+app.route('/materias')
+   .post(users.save_materias)
 };

@@ -64,15 +64,23 @@ exports.read_user = (req, res) => {
   );
 };
 
-exports.update_user = (req, res) => {
-  User.findOneAndUpdate(
-    { _id: req.params.userId },
-    req.body,
-    { new: true },
-    (err, msg) => {
-      if (err) res.send(err);
+exports.save_materias = (req, res) => {
+  User.findOne({ email: req.body.email}, (err, msg) => {
 
-      res.json(msg);
+      const mat = new User({
+      materias: [
+        {
+          nome_materia: req.body.nome_materia,
+          nome_prof: req.body.nome_prof,
+          dia: req.body.dia
+        }
+      ]
+      });
+
+      mat
+        .save()
+        .then(data => res.send(data))
+        .catch(err => res.status(500).send({ message: err.message }));
     }
   );
 };
