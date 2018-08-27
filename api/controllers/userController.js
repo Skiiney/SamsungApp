@@ -75,9 +75,7 @@ exports.save_materias = (req, res) => {
       return res.status(404).send({ error: "Usuário não encontrado." });
       console.log(err);
     }
-      var subdoc = user.materias[0];
-      subdoc.push(
-        {
+      user.materias.push({
           nome_materia: req.body.nome_materia,
           nome_prof: req.body.nome_prof,
           dia: req.body.dia
