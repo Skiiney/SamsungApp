@@ -81,7 +81,7 @@ exports.save_materias = (req, res) => {
           dia: req.body.dia
         });
 
-      subdoc
+      user
         .save()
         .then(data => res.send(data))
         .catch(err => res.status(500).send({ message: err.message }));
