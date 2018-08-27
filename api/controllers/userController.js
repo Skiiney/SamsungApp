@@ -67,7 +67,8 @@ exports.read_user = (req, res) => {
 exports.save_materias = (req, res) => {
   User.findOne({ email: req.body.email}, (err, msg) => {
     //teste
-      var subdoc = user.materias[0];
+      const mat = new User();
+      var subdoc = mat.materias[0];
       subdoc.push(
         {
           nome_materia: req.body.nome_materia,
