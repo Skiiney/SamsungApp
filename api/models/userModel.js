@@ -1,14 +1,14 @@
 "use strict";
 const mongoose = require("mongoose");
 
-const noteSchema = moongose.Schema(
+const noteSchema = mongoose.Schema(
   {
     titulo: String,
     mensagem: String
   }
 );
 
-const materiaSchema = moongose.Schema(
+const materiaSchema = mongoose.Schema(
   {
     nome_materia: String,
     nome_prof: String,
