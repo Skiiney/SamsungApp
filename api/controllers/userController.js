@@ -67,15 +67,15 @@ exports.read_user = (req, res) => {
 exports.save_materias = (req, res) => {
   User.findOne({ email: req.body.email}, (err, msg) => {
 
-      const mat = new User({
-      materias: [
+      var subdoc = user.materias[0];
+      subdoc.push(
         {
           nome_materia: req.body.nome_materia,
           nome_prof: req.body.nome_prof,
           dia: req.body.dia
-        }
-      ]
-      });
+        });
+
+
 
       mat
         .save()
