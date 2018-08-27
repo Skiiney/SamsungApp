@@ -65,7 +65,7 @@ exports.read_user = (req, res) => {
 };
 
 exports.save_materias = (req, res) => {
-  User.findOne({ email: req.body.email}, (err, msg) => {
+  User.findOne({ email: req.body.email}, (err, user) => {
     if (err) {
       return res.status(500).send({ erro: "Erro ao processar." });
       console.log(err);
