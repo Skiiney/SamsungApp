@@ -90,7 +90,7 @@ exports.save_materias = (req, res) => {
 };
 
 exports.save_notes = (req, res) => {
-  User.findOne({ email: req.body.email}, (err, user) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
     if (err) {
       return res.status(500).send({ erro: "Erro ao processar." });
       console.log(err);
@@ -100,7 +100,7 @@ exports.save_notes = (req, res) => {
       return res.status(404).send({ error: "Usuário não encontrado." });
       console.log(err);
     }
-      user.materias[0].notes.push({
+      user.materias.find(function(a){return a.nome_materia == req.body.nome_materia}).notes.push({
           titulo: req.body.titulo,
           mensagem: req.body.mensagem
         });
