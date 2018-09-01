@@ -33,12 +33,12 @@ exports.read_user = (req, res) => {
     (err, user) => {
       console.log("Tentativa de login: " + req.body.email, user.password);
       if (err) {
-        return res.status(500).send({ erro: "Erro ao processar." });
+        return res.status(500).send({ message: err.message });
         console.log(err);
       }
 
       if (!user) {
-        return res.status(404).send({ error: "Usuário não encontrado." });
+        return res.status(404).send("Email não encontrado");
         console.log(err);
       }
 
@@ -46,19 +46,12 @@ exports.read_user = (req, res) => {
         .compare(req.body.password, user.password)
         .then(isCorrect => {
           isCorrect
-            ? res.status(200).send({
-                user: {
-                  name: user.name,
-                  lastname: user.lastname,
-                  email: user.email
-                },
-                authToken: bcrypt.hashSync(req.body.password, HASH_SALT_FACTOR)
-              })
-            : res.status(200).send({ error: "Usuário não autenticado." });
+            ? res.status(200).send("True")
+            : res.status(300).send("Senha incorreta");
         console.log(err);
         })
         .catch(err =>
-          res.status(404).send({ error: "Usuário não autenticado." })
+          res.status(404).send({ message: err.message })
         );
     }
   );
