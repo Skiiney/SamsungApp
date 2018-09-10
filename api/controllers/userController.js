@@ -10,6 +10,8 @@ exports.list_all_users = (req, res) => {
     .catch(err => res.status(500).send({ message: err.message }));
 };
 
+// teste
+
 exports.create_user = (req, res) => {
   console.log(req.body);
   const user = new User({
