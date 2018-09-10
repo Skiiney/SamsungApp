@@ -3,6 +3,8 @@
 module.exports = (app) => {
 
 const users = require('../controllers/userController');
+   
+   //teste
 
 // users Routes
 app.route('/users')
