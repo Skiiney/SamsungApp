@@ -108,15 +108,19 @@ exports.save_notes = (req, res) => {
   );
 };
 
-exports.delete_user = (req, res) => {
-  User.remove(
-    {
-      _id: req.params.userId
-    },
-    (err, msg) => {
-      if (err) res.send(err);
+exports.read_note = (req, res) => {
+  User.findOne({ email: req.body.email}, (err, user) => {
+    if (err) {
+      return res.status(500).send({ erro: "Erro ao processar." });
+      console.log(err);
+    }
 
-      res.json({ message: "User successfully deleted" });
+    if (!user) {
+      return res.status(404).send({ error: "Usuário não encontrado." });
+      console.log(err);
+    }
+      
+      return res.status(200).send(user);
     }
   );
 };
