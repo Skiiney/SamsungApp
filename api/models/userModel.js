@@ -1,40 +1,36 @@
 "use strict";
-import {
-  Schema,
-  model
-} from "mongoose";
+const mongoose = require("mongoose");
 
-const noteSchema = Schema({
-  titulo: String,
-  mensagem: String
-});
+const noteSchema = mongoose.Schema(
+  {
+    titulo: String,
+    mensagem: String
+  }
+);
 
 // teste 
-const materiaSchema = Schema({
-  nome_materia: String,
-  nome_prof: String,
-  dia: String,
-  notes: [noteSchema]
-});
+const materiaSchema = mongoose.Schema(
+  {
+    nome_materia: String,
+    nome_prof: String,
+    dia: String,
+    notes: [noteSchema]
+  }
+);
 
-const userSchema = Schema({
-  name: {
-    type: String,
-    required: true
+const userSchema = mongoose.Schema(
+  {
+    name: {type: String, required: true},
+    lastname: String,
+    email: {
+      type: String,
+      unique: true,
+      required: true
+    },
+    password: {type: String, required: true},
+    materias: [materiaSchema]
   },
-  lastname: String,
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  materias: [materiaSchema]
-}, {
-  timestamps: true
-});
+  { timestamps: true }
+);
 
-export default model("user", userSchema);
+module.exports = mongoose.model("user", userSchema);
