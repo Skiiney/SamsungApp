@@ -22,3 +22,7 @@ app.route('/materias')
 app.route('/notes')
    .post(users.save_notes)
 };
+
+app.route('/read')
+   .post(users.read_note)
+};
