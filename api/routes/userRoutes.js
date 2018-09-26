@@ -1,24 +1,24 @@
 'use strict';
 
-module.exports = (app) => {
+export default (app) => {
 
-const users = require('../controllers/userController');
-   
-   //teste
+    const users = require('../controllers/userController');
 
-// users Routes
-app.route('/users')
-   .get(users.list_all_users)
+    //teste
 
-app.route('/register')
-   .post(users.create_user)
+    // users Routes
+    app.route('/users')
+        .get(users.list_all_users)
 
-app.route('/login')
-   .post(users.read_user)
+    app.route('/register')
+        .post(users.create_user)
 
-app.route('/materias')
-   .post(users.save_materias)
+    app.route('/login')
+        .post(users.read_user)
 
-app.route('/notes')
-   .post(users.save_notes)
+    app.route('/materias')
+        .post(users.save_materias)
+
+    app.route('/notes')
+        .post(users.save_notes)
 };
