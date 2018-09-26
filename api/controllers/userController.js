@@ -120,7 +120,7 @@ exports.read_note = (req, res) => {
       console.log(err);
     }
       
-         return res.status(200).send(user.materias.note);
+         return res.status(200).send(user.materias);
     }
   );
 };
