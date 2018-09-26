@@ -122,7 +122,7 @@ exports.read_note = (req, res) => {
       
       return res.format({
     'application/json': function(){
-    res.status(200).send(user.materias)}
+    res.status(200).send({user.materias})}
     });
     }
   );
