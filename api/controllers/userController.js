@@ -120,7 +120,10 @@ exports.read_note = (req, res) => {
       console.log(err);
     }
       
-      return res.status(200).send(user.materias);
+      return res.format({
+    'application/json': function(){
+    res.status(200).send(user)}
+    });
     }
   );
 };
